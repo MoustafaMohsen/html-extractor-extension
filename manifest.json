@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+
+  "name": "My Extractor",
+  "description": "se the sit first",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*","https://*/*"],
+      "js": ["popper.js","jquery.js","content.js"]
+    }
+  ]
+}
