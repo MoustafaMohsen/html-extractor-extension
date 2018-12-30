@@ -1,13 +1,25 @@
 {
   "manifest_version": 2,
-
+  "permissions": [
+    "storage",
+    "notifications",
+    "tabs", 
+    "http://*/*"
+  ],
   "name": "My Extractor",
   "description": "se the sit first",
   "version": "0.1",
   "content_scripts": [
     {
       "matches": ["http://*/*","https://*/*"],
-      "js": ["popper.js","jquery.js","content.js"]
+      "js": ["assets/js/popper.js","assets/js/jquery.js","content.js"]
     }
-  ]
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "popup" : "index.html",
+    "default_icon": "extract_archive.png"
+  }
 }
