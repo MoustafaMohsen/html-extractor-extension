@@ -7,11 +7,19 @@ let input_srcSelector = $("#srcSelector")[0];
 let input_nextPageAnchor = $("#nextPageAnchor")[0];
 
 let input_submitBtn = $("#submitBtn")[0];
+let input_resetBtn= $("#resetBtn")[0];
 
 var iframeSelector = ".fourteen.columns iframe";
 var srcSelector = "#video-js_html5_api";
 var nextPageAnchor = ".prev-fln .prev-next:nth-child(2) a";
 var locationHost = "www.wco.tv";
+
+var WCOvalues = {
+    "locationHost": locationHost,
+    "iframeSelector": iframeSelector,
+    "srcSelector": srcSelector,
+    "nextPageAnchor":nextPageAnchor ,
+};
 
 function syncInputs() {
     chrome.storage.local.get( null, function (items) {
@@ -25,8 +33,8 @@ function syncInputs() {
     });
 }
 
-function SubmitValues() {
-    var values = {
+function SubmitValues(valuesParam = null) {
+    var values = valuesParam || {
         "locationHost":input_locationHost.value || locationHost,
         "iframeSelector":input_iframeSelector.value || iframeSelector,
         "srcSelector":input_srcSelector.value || srcSelector,
@@ -94,6 +102,11 @@ $(input_submitBtn).click(function () {
     console.log("onclick");
     SubmitValues();
 });
+
+$(input_resetBtn).click(function () {
+    SubmitValues(WCOvalues);
+});
+
 
 getValue();
 
